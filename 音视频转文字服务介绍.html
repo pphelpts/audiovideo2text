@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>视频/音频转文字 · 多语种听写助手</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #f5f9ff;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            padding: 20px;
+            color: #1e2f3e;
+        }
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        .card {
+            background: white;
+            border-radius: 36px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.08);
+            overflow: hidden;
+            margin-bottom: 20px;
+            padding: 28px 24px 32px;
+        }
+        h1 {
+            font-size: 1.9rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #0b5e7e, #2196a7);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 6px;
+        }
+        .badge {
+            background: #e0f0fa;
+            color: #0a6b8c;
+            border-radius: 60px;
+            padding: 5px 14px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+        .sub {
+            color: #2c6280;
+            border-left: 3px solid #39b3d9;
+            padding-left: 14px;
+            margin: 12px 0 20px;
+            font-weight: 500;
+        }
+        .price-block {
+            background: #fef6e0;
+            border-radius: 28px;
+            padding: 18px 20px;
+            margin: 20px 0;
+            border: 1px solid #ffe0a3;
+        }
+        .price-big {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #c25b00;
+        }
+        .price-small {
+            font-size: 1rem;
+            color: #b45f1b;
+        }
+        .free-promo {
+            background: #e1f7ed;
+            border-radius: 24px;
+            padding: 14px 16px;
+            margin: 15px 0;
+            font-weight: 500;
+            border-left: 6px solid #2e9b7c;
+        }
+        .feature-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .feature-item {
+            background: #f0f4f9;
+            border-radius: 40px;
+            padding: 6px 16px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .sample-section {
+            margin: 25px 0 15px;
+        }
+        .sample-tab {
+            display: flex;
+            gap: 10px;
+            border-bottom: 2px solid #e2ecf5;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #5a7d9a;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: 0.2s;
+        }
+        .tab-btn.active {
+            background: #dcf0fa;
+            color: #0b6e8f;
+        }
+        .sample-content {
+            background: #fafcff;
+            border-radius: 24px;
+            padding: 16px;
+            font-size: 0.85rem;
+            border: 1px solid #e2edf7;
+            margin-bottom: 12px;
+        }
+        .sample-text {
+            background: #f5f7fb;
+            padding: 12px;
+            border-radius: 18px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            font-size: 0.8rem;
+            color: #1c4e6e;
+            margin-top: 8px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .contact {
+            background: #faf3e0;
+            border-radius: 32px;
+            text-align: center;
+            padding: 22px 16px;
+            margin: 20px 0 10px;
+        }
+        .contact-buttons a {
+            display: inline-block;
+            background: #25d366;
+            color: white;
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-weight: 600;
+            margin: 8px 6px;
+            transition: 0.2s;
+        }
+        .contact-buttons a.qq {
+            background: #12b7f5;
+        }
+        .contact-buttons a:hover {
+            opacity: 0.85;
+            transform: scale(0.97);
+        }
+        .note {
+            font-size: 0.75rem;
+            color: #6c86a3;
+            text-align: center;
+            margin-top: 20px;
+            border-top: 1px solid #e0eaf3;
+            padding-top: 16px;
+        }
+        hr {
+            margin: 18px 0;
+            border: none;
+            height: 1px;
+            background: #e2ecf5;
+        }
+        @media (max-width: 500px) {
+            .card { padding: 20px; }
+            h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <div class="badge">🎙️ AI + 人工校验 · 准确率≥90%</div>
+        <h1>📹 视频/音频 → 逐字稿<br>多语种听写神器</h1>
+        <div class="sub">支持 YouTube · B站 · 本地音视频 — 1-2分钟快速出稿</div>
+
+        <!-- 定价 + 首次免费活动 -->
+        <div class="price-block">
+            <div>💰 正常价格：<span class="price-big">0.4元/分钟</span> <span class="price-small">（即4毛一分钟）</span></div>
+            <div class="free-promo">
+                🎁 <strong>首次体验免费</strong><br>
+                转发本说明到朋友圈，集齐<strong>3个赞</strong>，截图发我 → 免费转写任意视频/音频一次（时长≤30分钟）
+            </div>
+        </div>
+
+        <!-- 支持范围 -->
+        <div class="feature-grid">
+            <span class="feature-item">📌 YouTube链接</span>
+            <span class="feature-item">📌 B站链接</span>
+            <span class="feature-item">📌 本地视频 (mp4/avi/mkv)</span>
+            <span class="feature-item">📌 本地音频 (mp3/m4a/wav)</span>
+            <span class="feature-item">🇯🇵 日语・🇬🇧 英语・🇨🇳 中文</span>
+            <span class="feature-item">✅ AI初稿 + 人工快速校对</span>
+        </div>
+
+        <!-- 丰富样例展示 (真实语料) -->
+        <div class="sample-section">
+            <div class="sample-tab">
+                <button class="tab-btn active" data-lang="jp">🇯🇵 日语视频</button>
+                <button class="tab-btn" data-lang="en">🇬🇧 英文新闻</button>
+                <button class="tab-btn" data-lang="zh">🇨🇳 中文示范课</button>
+            </div>
+            <!-- 日语样例 -->
+            <div id="sample-jp" class="sample-content" style="display: block;">
+                <div>🎬 <strong>日语片段</strong>（原视频：日本访谈节目 'Around40' 节选）</div>
+                <div class="sample-text">
+🎧 转写结果：<br>
+「アラウンド40と呼ばれる世代がある。例えばこの女性、39歳、独身。2008年の今年、不惑の40歳を迎えるこの世代は、80年代のバブル経済の真っ只中で青春期を過ごしてきた。彼女たちは「男女雇用機会均等法世代」とも言われ、仕事、恋愛、結婚、出産という多様な選択肢の中から自分の生き方を選べる時代の象徴だった。しかし現在、そんな時代を走り続けてきたゆえに、迷い、置き去りにされた人生の岐路に立たされようとしている。」
+                </div>
+                <div style="font-size:0.75rem; color:#4f7ea0; margin-top: 8px;">✅ 人工校对：修正「不悪→不惑」「機械→機会」等，最终准确率≈96%</div>
+            </div>
+            <!-- 英文样例 -->
+            <div id="sample-en" class="sample-content" style="display: none;">
+                <div>📻 <strong>英文新闻音频</strong>（来源：BBC / VOA 科技报道）</div>
+                <div class="sample-text">
+🎧 转写结果：<br>
+"Researchers have developed a new machine learning model that can predict protein structures with unprecedented accuracy. The team says this breakthrough could accelerate drug discovery and help understand genetic diseases. However, ethical concerns about the use of AI in biology remain unresolved."
+                </div>
+                <div style="font-size:0.75rem; color:#4f7ea0; margin-top: 8px;">✅ 人工校对：纠正了“unprecedented”拼写及断句，准确率≈93%</div>
+            </div>
+            <!-- 中文样例 -->
+            <div id="sample-zh" class="sample-content" style="display: none;">
+                <div>🏫 <strong>中文示范课视频</strong>（初中物理 · 教学技能大赛）</div>
+                <div class="sample-text">
+🎧 转写结果：<br>
+“今天我们学习牛顿第一定律。任何物体都要保持匀速直线运动或静止状态，直到外力迫使它改变运动状态为止。这个定律也叫惯性定律。同学们能举出生活中的惯性现象吗？比如刹车时身体前倾，这就利用了惯性。”
+                </div>
+                <div style="font-size:0.75rem; color:#4f7ea0; margin-top: 8px;">✅ 人工校对：修正了术语“匀速直线运动”，准确率≈98%</div>
+            </div>
+        </div>
+
+        <!-- 为什么选择我们 -->
+        <hr>
+        <div style="margin: 12px 0;">
+            <strong>✨ 为什么找我转写？</strong><br>
+            • 自研 pipeline (yt-dlp + whisper) + 人工二次校对<br>
+            • 速度快：10分钟视频约1-2分钟出稿<br>
+            • 隐私安全：处理完立即删除源文件，只留文本<br>
+            • 不满意全额退
+        </div>
+
+        <!-- 联系方式 -->
+        <div class="contact">
+            <div style="margin-bottom: 12px;">📲 <strong>联系我，立刻转写</strong></div>
+            <div class="contact-buttons">
+                <a href="#" class="qq" onclick="copyContact('QQ: 2246921867')">💬 QQ 联系</a>
+                <a href="#" onclick="copyContact('微信: wxid_9r2dswkex0i122')">💚 微信联系</a>
+            </div>
+            <div style="font-size:0.8rem; margin-top: 12px;">👉 点击复制联系方式 → 添加好友发送视频/链接<br>首次体验记得发集赞截图噢~</div>
+        </div>
+
+        <div class="note">
+            ⚡ 支持 YouTube/B站链接 · 本地音视频 · 提供txt/srt字幕格式<br>
+            📆 在线时间 08:00 - 次日 01:00，一般10分钟内回复
+        </div>
+    </div>
+</div>
+
+<script>
+    // 样例选项卡切换
+    const tabs = document.querySelectorAll('.tab-btn');
+    const contents = {
+        jp: document.getElementById('sample-jp'),
+        en: document.getElementById('sample-en'),
+        zh: document.getElementById('sample-zh')
+    };
+    tabs.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const lang = btn.getAttribute('data-lang');
+            // 隐藏所有
+            Object.values(contents).forEach(c => c.style.display = 'none');
+            // 显示选中
+            if (lang === 'jp') contents.jp.style.display = 'block';
+            if (lang === 'en') contents.en.style.display = 'block';
+            if (lang === 'zh') contents.zh.style.display = 'block';
+            // 切换按钮样式
+            tabs.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        });
+    });
+
+    // 复制联系方式
+    function copyContact(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            alert("已复制: " + text + "\n请去QQ/微信粘贴并添加好友。");
+        }).catch(() => {
+            alert("手动复制吧：" + text);
+        });
+    }
+</script>
+</body>
+</html>
